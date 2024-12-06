@@ -1,0 +1,46 @@
+#include <iostream>
+
+using namespace std;
+
+class Bird
+{
+public:
+    virtual void fly() const
+    {
+        cout << "Bird is flying" << endl;
+    }
+};
+
+class Sparrow : public Bird
+{
+public:
+    void fly() const override
+    {
+        cout << "Sparrow is flying" << endl;
+    }
+};
+
+class Penguin : public Bird
+{
+public:
+    void fly() const override
+    {
+        cout << "Penguin cannot fly" << endl;
+    }
+};
+
+void letBirdFly(const Bird &bird)
+{
+    bird.fly();
+}
+
+int main()
+{
+    Sparrow sparrow;
+    Penguin penguin;
+
+    letBirdFly(sparrow);
+    letBirdFly(penguin);
+
+    return 0;
+}
