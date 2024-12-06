@@ -1,0 +1,53 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+class Book
+{
+public:
+    Book(const string &title, const string &author)
+        : title(title), author(author) {}
+
+    string getTitle() const { return title; }
+    string getAuthor() const { return author; }
+
+private:
+    string title;
+    string author;
+};
+
+class Library
+{
+public:
+    void addBook(const Book &book)
+    {
+        books.push_back(book);
+    }
+
+    void listBooks() const
+    {
+        for (const auto &book : books)
+        {
+            cout << "Title: " << book.getTitle()
+                 << ", Author: " << book.getAuthor() << endl;
+        }
+    }
+
+private:
+    vector<Book> books;
+};
+
+int main()
+{
+    Book book1("1984", "George Orwell");
+    Book book2("To Kill a Mockingbird", "Harper Lee");
+
+    Library library;
+    library.addBook(book1);
+    library.addBook(book2);
+
+    library.listBooks();
+
+    return 0;
+}
