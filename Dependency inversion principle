@@ -1,0 +1,42 @@
+#include <iostream>
+
+using namespace std;
+
+class IMessageSender
+{
+public:
+    virtual void sendMessage(const string &message) = 0;
+};
+
+class EmailSender : public IMessageSender
+{
+public:
+    void sendMessage(const string &message) override
+    {
+        cout << "Sending Email: " << message << endl;
+    }
+};
+
+class Notification
+{
+public:
+    Notification(IMessageSender *sender) : sender(sender) {}
+
+    void send(const string &message)
+    {
+        sender->sendMessage(message);
+    }
+
+private:
+    IMessageSender *sender;
+};
+
+int main()
+{
+    EmailSender emailSender;
+    Notification notification(&emailSender);
+
+    notification.send("Hello, Dependency Inversion Principle!");
+
+    return 0;
+}
