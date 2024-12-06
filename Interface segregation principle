@@ -1,0 +1,61 @@
+#include <iostream>
+
+using namespace std;
+
+class Printable
+{
+public:
+    virtual void print() const = 0;
+};
+
+class Scannable
+{
+public:
+    virtual void scan() const = 0;
+};
+
+class Printer : public Printable
+{
+public:
+    void print() const override
+    {
+        cout << "Printing document" << endl;
+    }
+};
+
+class Scanner : public Scannable
+{
+public:
+    void scan() const override
+    {
+        cout << "Scanning document" << endl;
+    }
+};
+
+class MultiFunctionDevice : public Printable, public Scannable
+{
+public:
+    void print() const override
+    {
+        cout << "Printing document" << endl;
+    }
+
+    void scan() const override
+    {
+        cout << "Scanning document" << endl;
+    }
+};
+
+int main()
+{
+    Printer printer;
+    Scanner scanner;
+    MultiFunctionDevice mfd;
+
+    printer.print();
+    scanner.scan();
+    mfd.print();
+    mfd.scan();
+
+    return 0;
+}
